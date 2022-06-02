@@ -1,4 +1,8 @@
 import django_heroku
+from environs import Env
+
+env = Env()
+env.read_env()
 
 """
 Django settings for speechboard project.
@@ -22,7 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rac&$a+1@xy=_8b2ssq%qhf@i+1n$_i#4y1c^wb)nuoyd))w4r'
+# SECRET_KEY = 'django-insecure-rac&$a+1@xy=_8b2ssq%qhf@i+1n$_i#4y1c^wb)nuoyd))w4r'
+SECRET_KEY = env.str("SECRET_KEY")
+CORS_ORIGIN_WHITELIST = ('speechboard-frontend.herokuapp.com/', 'http://localhost:3000/')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,10 +50,13 @@ INSTALLED_APPS = [
     'boards',
     'card',
     'rest_framework',
+    'corsheaders',
 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
