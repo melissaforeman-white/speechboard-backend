@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-rac&$a+1@xy=_8b2ssq%qhf@i+1n$_i#4y1c^wb)nuoyd))w4r'
 SECRET_KEY = env.str("SECRET_KEY")
-CORS_ORIGIN_WHITELIST = ('speechboard-frontend.herokuapp.com/', 'http://localhost:3000/')
+CORS_ORIGIN_WHITELIST = ('https://speechboard-frontend.herokuapp.com', 'http://localhost:3000')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
